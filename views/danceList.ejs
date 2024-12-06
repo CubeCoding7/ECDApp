@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dance Instructions</title>
+  <style>
+    .good { color: green; }
+    .bad { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Processed Dance List</h1>
+  
+  <ul>
+    <% dances.forEach(dance => { %>
+      <li class="<%= goodDances[dance.name] ? 'good' : 'bad' %>">
+        <%= dance.name %> - <%= dance.description %>
+      </li>
+    <% }) %>
+  </ul>
+
+  <!-- Form to add a new dance -->
+  <h2>Add a New Dance</h2>
+  <form action="/add-dance" method="POST">
+    <label for="danceName">Dance Name:</label>
+    <input type="text" id="danceName" name="danceName" required><br><br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required><br><br>
+
+    <label for="listType">Choose List:</label>
+    <select id="listType" name="listType" required>
+      <option value="good">Good Dance</option>
+      <option value="bad">Bad Dance</option>
+    </select><br><br>
+
+    <button type="submit">Add Dance</button>
+  </form>
+
+  <a href="/">Upload another image</a>
+</body>
+</html>

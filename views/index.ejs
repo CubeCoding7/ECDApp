@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Dance Image</title>
+  <style>
+    .good { color: green; }
+    .bad { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Upload Dance Image</h1>
+
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="danceImage">Select image to upload:</label>
+    <input type="file" name="danceImage" id="danceImage" accept="image/*" required>
+    <button type="submit">Upload Image</button>
+  </form>
+
+  <hr>
+
+  <!-- Form to add a new dance -->
+  <h2>Add a New Dance</h2>
+  <form action="/add-dance" method="POST">
+    <label for="danceName">Dance Name:</label>
+    <input type="text" id="danceName" name="danceName" required><br><br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required><br><br>
+
+    <label for="listType">Choose List:</label>
+    <select id="listType" name="listType" required>
+      <option value="good">Good Dance</option>
+      <option value="bad">Bad Dance</option>
+    </select><br><br>
+
+    <button type="submit">Add Dance</button>
+  </form>
+
+  <hr>
+
+  <!-- Displaying the current dances -->
+  <h2>Current Dance List</h2>
+  <ul>
+    <% dances.forEach(dance => { %>
+      <li class="<%= goodDances[dance.name] ? 'good' : 'bad' %>">
+        <%= dance.name %> - <%= dance.description %>
+      </li>
+    <% }) %>
+  </ul>
+
+</body>
+</html>
